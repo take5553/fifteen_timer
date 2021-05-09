@@ -24,7 +24,6 @@ class MainWindow(QWidget):
         self.stylebutton1 = "background-color: black; color: #000000; font-size: 220px"
         self.stylebutton2 = "background-color: white; color: #FFFFFF; font-size: 220px"
         
-        #self.cLabel1 = QPushButton(self)
         self.cLabel1 = ClickableLabel(self)
         self.cLabel1.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
         self.cLabel1.setStyleSheet(self.stylebutton1)

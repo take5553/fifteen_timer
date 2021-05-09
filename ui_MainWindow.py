@@ -152,5 +152,5 @@ class MainWindow(QWidget):
             self.update()
     
     def MyShutDown(self):
-        os.system("sudo shutdown -h now")
-        #sys.exit()
+        #os.system("sudo shutdown -h now")
+        sys.exit()

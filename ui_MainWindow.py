@@ -1,5 +1,4 @@
-import sys
-import datetime
+import sys, datetime, os
 from PyQt5.QtWidgets import QWidget, QLabel, QSizePolicy, QGridLayout, QPushButton, QHBoxLayout, QFrame
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtCore import Qt, QTimer
@@ -31,6 +30,7 @@ class MainWindow(QWidget):
         self.cLabel1.setStyleSheet(self.stylebutton1)
         self.cLabel1.setFrameStyle(QFrame.Box)
         self.cLabel1.clicked.connect(self.switchTimer)
+        self.cLabel1.dblclicked.connect(self.MyShutDown)
         
         self.labelMinute = QLabel(self)
         self.labelMinute.setText('')
@@ -94,6 +94,11 @@ class MainWindow(QWidget):
     def stopTimer(self):
         self.timer.stop()
         self.colorChanger.stop()
+        self.labelMinute.setText("")
+        self.labelColon1.setText("")
+        self.labelSecond.setText("")
+        self.labelColon2.setText("")
+        self.labelMilliSecond.setText("")
         self.colorMode = 1
         self.changeColor()
         
@@ -145,3 +150,7 @@ class MainWindow(QWidget):
             self.labelColon2.setStyleSheet(self.style1)
             self.labelMilliSecond.setStyleSheet(self.style1)
             self.update()
+    
+    def MyShutDown(self):
+        os.system("sudo shutdown -h now")
+        #sys.exit()

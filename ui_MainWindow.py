@@ -84,6 +84,7 @@ class MainWindow(QWidget):
             self.startTimer()
     
     def startTimer(self):
+        self.setCursor(Qt.BlankCursor)
         self.dt_endTime = datetime.datetime.now() + self.td_timeSpan
         self.timer.start(10)
         
@@ -92,6 +93,7 @@ class MainWindow(QWidget):
         self.colorChanger.stop()
         self.colorMode = 1
         self.changeColor()
+        self.setCursor(Qt.ArrowCursor)
         
     def updateLabel(self):
         td_timeLeft = self.dt_endTime - datetime.datetime.now()

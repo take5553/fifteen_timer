@@ -71,7 +71,7 @@ class MainWindow(QWidget):
         grid1.setContentsMargins(50,50,50,50)
         self.setLayout(grid1)
 
-        self.td_timeSpan = datetime.timedelta(minutes=0, seconds=5)
+        self.td_timeSpan = datetime.timedelta(minutes=15, seconds=0)
         
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.updateLabel)

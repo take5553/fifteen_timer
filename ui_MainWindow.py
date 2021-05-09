@@ -6,6 +6,12 @@ from PyQt5.QtCore import Qt, QTimer
 from clickable_label import *
 
 class MainWindow(QWidget):
+    
+    style1 = "background-color: black; color: #EEEEEE; font-size: 220px"
+    style2 = "background-color: white; color: black; font-size: 220px"
+    stylebutton1 = "background-color: black; color: #000000; font-size: 220px"
+    stylebutton2 = "background-color: white; color: #FFFFFF; font-size: 220px"
+    
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.initUI()
@@ -18,11 +24,6 @@ class MainWindow(QWidget):
         self.setPalette(p)
         
         self.setCursor(Qt.BlankCursor)
-        
-        self.style1 = "background-color: black; color: #EEEEEE; font-size: 220px"
-        self.style2 = "background-color: white; color: black; font-size: 220px"
-        self.stylebutton1 = "background-color: black; color: #000000; font-size: 220px"
-        self.stylebutton2 = "background-color: white; color: #FFFFFF; font-size: 220px"
         
         self.cLabel1 = ClickableLabel(self)
         self.cLabel1.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)

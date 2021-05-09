@@ -15,13 +15,15 @@ class MainWindow(QWidget):
         self.resize(1024,600)
         self.setWindowTitle('PyQt5 sample GUI')
         p = self.palette()
-        p.setColor(self.backgroundRole(), QColor('#080808'))
+        p.setColor(self.backgroundRole(), QColor('#000000'))
         self.setPalette(p)
+        
+        self.setCursor(Qt.BlankCursor)
         
         self.style1 = "background-color: black; color: #EEEEEE; font-size: 220px"
         self.style2 = "background-color: white; color: black; font-size: 220px"
-        self.stylebutton1 = "background-color: black; color: #222222; font-size: 220px"
-        self.stylebutton2 = "background-color: white; color: #DDDDDD; font-size: 220px"
+        self.stylebutton1 = "background-color: black; color: #000000; font-size: 220px"
+        self.stylebutton2 = "background-color: white; color: #FFFFFF; font-size: 220px"
         
         #self.cLabel1 = QPushButton(self)
         self.cLabel1 = ClickableLabel(self)
@@ -31,27 +33,27 @@ class MainWindow(QWidget):
         self.cLabel1.clicked.connect(self.switchTimer)
         
         self.labelMinute = QLabel(self)
-        self.labelMinute.setText('15')
+        self.labelMinute.setText('')
         self.labelMinute.setAlignment(Qt.AlignCenter)
         self.labelMinute.setStyleSheet(self.style1)
  
         self.labelColon1 = QLabel(self)
-        self.labelColon1.setText(':')
+        self.labelColon1.setText('')
         self.labelColon1.setAlignment(Qt.AlignCenter)
         self.labelColon1.setStyleSheet(self.style1)
         
         self.labelSecond = QLabel(self)
-        self.labelSecond.setText('00')
+        self.labelSecond.setText('')
         self.labelSecond.setAlignment(Qt.AlignCenter)
         self.labelSecond.setStyleSheet(self.style1)
         
         self.labelColon2 = QLabel(self)
-        self.labelColon2.setText(':')
+        self.labelColon2.setText('')
         self.labelColon2.setAlignment(Qt.AlignCenter)
         self.labelColon2.setStyleSheet(self.style1)
         
         self.labelMilliSecond = QLabel(self)
-        self.labelMilliSecond.setText('00')
+        self.labelMilliSecond.setText('')
         self.labelMilliSecond.setAlignment(Qt.AlignCenter)
         self.labelMilliSecond.setStyleSheet(self.style1)
         
@@ -69,7 +71,7 @@ class MainWindow(QWidget):
         grid1.setContentsMargins(50,50,50,50)
         self.setLayout(grid1)
 
-        self.td_timeSpan = datetime.timedelta(minutes=15, seconds=0)
+        self.td_timeSpan = datetime.timedelta(minutes=0, seconds=5)
         
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.updateLabel)
@@ -84,7 +86,8 @@ class MainWindow(QWidget):
             self.startTimer()
     
     def startTimer(self):
-        self.setCursor(Qt.BlankCursor)
+        self.labelColon1.setText(':')
+        self.labelColon2.setText(':')
         self.dt_endTime = datetime.datetime.now() + self.td_timeSpan
         self.timer.start(10)
         
@@ -93,7 +96,6 @@ class MainWindow(QWidget):
         self.colorChanger.stop()
         self.colorMode = 1
         self.changeColor()
-        self.setCursor(Qt.ArrowCursor)
         
     def updateLabel(self):
         td_timeLeft = self.dt_endTime - datetime.datetime.now()
@@ -105,9 +107,11 @@ class MainWindow(QWidget):
             self.update()
         else:
             self.timer.stop()
-            self.labelMinute.setText("00")
-            self.labelSecond.setText("00")
-            self.labelMilliSecond.setText("00")
+            self.labelMinute.setText("")
+            self.labelColon1.setText("")
+            self.labelSecond.setText("")
+            self.labelColon2.setText("")
+            self.labelMilliSecond.setText("")
             self.changeColor()
             self.colorChanger.start(500)
     
@@ -120,7 +124,7 @@ class MainWindow(QWidget):
         if self.colorMode == 0:
             self.colorMode = 1
             p = self.palette()
-            p.setColor(self.backgroundRole(), QColor('#F7F7F7'))
+            p.setColor(self.backgroundRole(), QColor('#FFFFFF'))
             self.setPalette(p)
             self.cLabel1.setStyleSheet(self.stylebutton2)
             self.labelMinute.setStyleSheet(self.style2)
@@ -132,7 +136,7 @@ class MainWindow(QWidget):
         else:
             self.colorMode = 0
             p = self.palette()
-            p.setColor(self.backgroundRole(), QColor('#080808'))
+            p.setColor(self.backgroundRole(), QColor('#000000'))
             self.setPalette(p)
             self.cLabel1.setStyleSheet(self.stylebutton1)
             self.labelMinute.setStyleSheet(self.style1)
